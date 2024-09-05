@@ -11,5 +11,5 @@ public struct Spawner : IComponentData
     public float2 SpawnPosition; //better vector2
     public float NextSpawnTime;
     public float SpawnRate;
-
+    public float DestroyTime;
 }

@@ -20,6 +20,7 @@ public partial struct SpawnerSystem : ISystem //handles the logic, other spawner
                 float3 pos = new float3(spawner.ValueRO.SpawnPosition.x, spawner.ValueRO.SpawnPosition.y, 0);
                 state.EntityManager.SetComponentData(newEntity, LocalTransform.FromPosition(pos));
                 spawner.ValueRW.NextSpawnTime = (float)SystemAPI.Time.ElapsedTime + spawner.ValueRO.SpawnRate;
+
             }
         }
     }
