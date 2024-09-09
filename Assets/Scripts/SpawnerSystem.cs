@@ -16,7 +16,7 @@ public partial struct SpawnerSystem : ISystem //handles the logic, other spawner
         {
             if (spawner.ValueRO.NextSpawnTime < SystemAPI.Time.ElapsedTime)
             {
-                Entity newEntity = state.EntityManager.Instantiate(spawner.ValueRO.Prefab); //I believe this causes a considerable stutter
+                Entity newEntity = state.EntityManager.Instantiate(spawner.ValueRO.Prefab); 
                 float3 pos = new float3(spawner.ValueRO.SpawnPosition.x, spawner.ValueRO.SpawnPosition.y, 0);
                 state.EntityManager.SetComponentData(newEntity, LocalTransform.FromPosition(pos));
                 spawner.ValueRW.NextSpawnTime = (float)SystemAPI.Time.ElapsedTime + spawner.ValueRO.SpawnRate;

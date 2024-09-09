@@ -23,7 +23,6 @@ public class EnemyAuthoring : MonoBehaviour
                 Value = 0,
                 Value2 = authoring.TTK,
             });
-
             AddComponent(enemyEntity, new EnemyEntity
             {
                 Value = enemyEntity
