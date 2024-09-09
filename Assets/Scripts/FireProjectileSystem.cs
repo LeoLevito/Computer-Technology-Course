@@ -15,7 +15,7 @@ public partial struct FireProjectileSystem : ISystem
         var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.TempJob);
         foreach(var (projectilePrefab, transform) in SystemAPI.Query<ProjectilePrefab, LocalTransform>().WithAll<FireProjectileTag>())
         {
-            var newProjectile = ecb.Instantiate(projectilePrefab.Value);
+            var newProjectile = ecb.Instantiate(projectilePrefab.Value); //I believe this causes a considerable stutter
             var projectileTransform = LocalTransform.FromPositionRotation(transform.Position, transform.Rotation);
             ecb.SetComponent(newProjectile, projectileTransform);
 
