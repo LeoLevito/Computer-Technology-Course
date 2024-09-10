@@ -98,4 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 5
+  ProjectileColliderSize: 6
   ProjectilePrefab: {fileID: 1657887719783006534, guid: 1affd3407c082264098c749c79fc5a91, type: 3}

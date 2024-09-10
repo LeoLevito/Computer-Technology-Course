@@ -7,6 +7,7 @@ public class ProjectileAuthoring : MonoBehaviour
 {
     public float ProjectileSpeed;
     public float TTK;
+    public float ProjectileColliderSize;
     public class ProjectileAuthoringBaker : Baker<ProjectileAuthoring>
     {
         public override void Bake(ProjectileAuthoring authoring)
@@ -23,6 +24,11 @@ public class ProjectileAuthoring : MonoBehaviour
             {
                 Value = entity
             });
+
+            AddComponent(entity, new ProjectileColliderSize
+            {
+                Value = authoring.ProjectileColliderSize,
+            });
         }
     }
 }
@@ -37,3 +43,10 @@ public struct ProjectileEntity : IComponentData
 {
     public Entity Value;
 }
+
+public struct ProjectileColliderSize : IComponentData
+{
+    public float Value;
+}
+
+

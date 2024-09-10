@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using Unity.Burst;
+using Unity.Collections;
 using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
 
 
 [UpdateInGroup(typeof(SimulationSystemGroup))]
 [UpdateBefore(typeof(TransformSystemGroup))]
+[BurstCompile]
 public partial struct FireProjectileSystem : ISystem
 {
+    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.TempJob);
@@ -21,7 +26,6 @@ public partial struct FireProjectileSystem : ISystem
             var newProjectile = ecb.Instantiate(projectilePrefab.Value);
             var projectileTransform = LocalTransform.FromPositionRotation(transform.Position, transform.Rotation);
             ecb.SetComponent(newProjectile, projectileTransform);
-
         }
 
         new ProjectileKillJob
@@ -32,6 +36,9 @@ public partial struct FireProjectileSystem : ISystem
         state.Dependency.Complete();
         ecb.Playback(state.EntityManager);
         ecb.Dispose(); 
+
+
+
     }
 }
 

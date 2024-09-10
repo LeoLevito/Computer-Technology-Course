@@ -29,7 +29,7 @@ public class PlayerAuthoring : MonoBehaviour
 
             AddComponent(playerEntity, new ProjectilePrefab
             {
-                Value = GetEntity(authoring.ProjectilePrefab, TransformUsageFlags.Dynamic)
+                Value = GetEntity(authoring.ProjectilePrefab, TransformUsageFlags.Dynamic),
             });
         }
     }
@@ -59,3 +59,22 @@ public struct ProjectileMoveSpeed : IComponentData
 }
 
 public struct FireProjectileTag : IComponentData, IEnableableComponent { }
+
+
+
+
+
+
+//new 10 sep 2024 cornelius lecture
+public struct ProjectileLifetime : IComponentData
+{
+
+    public float Value;
+}
+
+public struct LifeTime : IComponentData
+{
+    public float Value;
+}
+
+public struct IsDestroying : IComponentData { }

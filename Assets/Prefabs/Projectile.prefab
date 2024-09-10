@@ -99,3 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectileSpeed: 10
   TTK: 1
+  ProjectileColliderSize: 0
