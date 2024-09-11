@@ -53,11 +53,6 @@ public struct ProjectilePrefab : IComponentData
     public Entity Value;
 }
 
-public struct ProjectileMoveSpeed : IComponentData
-{
-    public float Value;
-}
-
 public struct FireProjectileTag : IComponentData, IEnableableComponent { }
 
 

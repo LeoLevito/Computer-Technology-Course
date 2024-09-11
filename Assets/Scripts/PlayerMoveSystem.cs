@@ -6,6 +6,7 @@ using Unity.Transforms;
 using UnityEngine;
 
 [UpdateBefore(typeof(TransformSystemGroup))] //run before Transform System group, check entities Systems window in unity editor.
+[BurstCompile]
 public partial struct PlayerMoveSystem : ISystem
 {
     [BurstCompile] //for job systems, marks code so it uses different compiler (burst complier) compared to normal one. Compiles it down to raw machine code (more performant on the cpu) instead of an intermediary version.

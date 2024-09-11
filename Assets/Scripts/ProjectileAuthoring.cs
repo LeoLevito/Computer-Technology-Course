@@ -12,41 +12,19 @@ public class ProjectileAuthoring : MonoBehaviour
     {
         public override void Bake(ProjectileAuthoring authoring)
         {
-            Entity entity = GetEntity(TransformUsageFlags.Dynamic);
-            AddComponent(entity, new ProjectileMoveSpeed { Value = authoring.ProjectileSpeed });
-
-            AddComponent(entity, new ProjectileDeathTimer
+            Entity projectileEntity = GetEntity(TransformUsageFlags.Dynamic);
+            AddComponent(projectileEntity, new ProjectileComponent
             {
-                Value = 0,
-                Value2 = authoring.TTK,
-            });
-            AddComponent(entity, new ProjectileEntity
-            {
-                Value = entity
-            });
-
-            AddComponent(entity, new ProjectileColliderSize
-            {
-                Value = authoring.ProjectileColliderSize,
+                DeathTimer = 0,
+                DeathTimer2 = authoring.TTK,
+                ProjectileMoveSpeed = authoring.ProjectileSpeed,
+                ColliderSize = authoring.ProjectileColliderSize,
+                projectileEntity = projectileEntity,
             });
         }
     }
 }
 
-public struct ProjectileDeathTimer : IComponentData
-{
-    public float Value;
-    public float Value2;
-}
 
-public struct ProjectileEntity : IComponentData
-{
-    public Entity Value;
-}
-
-public struct ProjectileColliderSize : IComponentData
-{
-    public float Value;
-}
 
 

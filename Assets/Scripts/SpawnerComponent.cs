@@ -5,10 +5,11 @@ using Unity.Mathematics;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
-public struct Spawner : IComponentData
+public struct SpawnerComponent : IComponentData
 {
     public Entity Prefab; 
     public float2 SpawnPosition; //better vector2
     public float NextSpawnTime;
     public float SpawnRate;
+    public Entity SpawnerEntity;
 }

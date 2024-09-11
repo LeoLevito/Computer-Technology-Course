@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2101722459271210191, guid: e150371dae52ab847923154e511f4ec0, type: 3}
-  SpawnRate: 8
+  SpawnRate: 5
   DestroyTime: 2
 --- !u!1 &3266024775247584195
 GameObject:

@@ -7,28 +7,28 @@ using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
 
+[BurstCompile]
 public partial struct EnemySystem : ISystem
 {
     float KillTimer;
-    public void OnCreate(ref SystemState state) { }
-    public void OnDestroy(ref SystemState state) { }
 
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
         EntityCommandBuffer ECB = new EntityCommandBuffer(Allocator.TempJob);
         float deltaTime = SystemAPI.Time.DeltaTime;
-        float timeElapsed = (float)SystemAPI.Time.ElapsedTime;
+
         new EnemyMoveJob
         {
             DeltaTime = deltaTime
-        }.Schedule(); //whenever we have an available thread where gonna run it.
+        }.Schedule(); 
 
         new EnemyKillJob
         {
             DeltaTime = deltaTime,
             ecb = ECB,
-        }.Schedule(); //whenever we have an available thread where gonna run it.
+        }.Schedule(); 
+
         state.Dependency.Complete();
         ECB.Playback(state.EntityManager);
         ECB.Dispose();
@@ -41,9 +41,9 @@ public partial struct EnemyMoveJob : IJobEntity
     public float DeltaTime;
 
     [BurstCompile]
-    private void Execute(ref LocalTransform transform, in EnemyMoveSpeed speed)
+    private void Execute(ref LocalTransform transform, in EnemyComponent enemy)
     {
-        transform.Position.y -= speed.Value * DeltaTime;
+        transform.Position.y -= enemy.MoveSpeed * DeltaTime;
     }
 }
 
@@ -54,13 +54,13 @@ public partial struct EnemyKillJob : IJobEntity
     public EntityCommandBuffer ecb;
 
     [BurstCompile]
-    private void Execute(ref EnemyEntity entity, ref EnemyDeathTimer deathTimer) //ref is very important here, without it I can't update the death timer values for specific enemies!
+    private void Execute(ref EnemyComponent enemy) //ref is very important here, without it I can't update the death timer values for specific enemies!
     {
-        deathTimer.Value += DeltaTime;
-       // Debug.Log(deathTimer.Value.ToString());
-        if (deathTimer.Value >= deathTimer.Value2)
+        enemy.DeathTimer += DeltaTime;
+
+        if (enemy.DeathTimer >= enemy.DeathTimer2)
         {
-            ecb.DestroyEntity(entity.Value);
+            ecb.DestroyEntity(enemy.enemyEntity);
         }
     }
 }

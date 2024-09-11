@@ -14,35 +14,13 @@ public class EnemyAuthoring : MonoBehaviour
         {
             Entity enemyEntity = GetEntity(TransformUsageFlags.Dynamic);
 
-            AddComponent(enemyEntity, new EnemyMoveSpeed
+            AddComponent(enemyEntity, new EnemyComponent
             {
-                Value = authoring.MoveSpeed,
-            });
-            AddComponent(enemyEntity, new EnemyDeathTimer
-            {
-                Value = 0,
-                Value2 = authoring.TTK,
-            });
-            AddComponent(enemyEntity, new EnemyEntity
-            {
-                Value = enemyEntity
+                MoveSpeed = authoring.MoveSpeed,
+                DeathTimer = 0,
+                DeathTimer2 = authoring.TTK,
+                enemyEntity = enemyEntity,
             });
         }
     }
-}
-
-public struct EnemyMoveSpeed : IComponentData
-{
-    public float Value;
-}
-
-public struct EnemyDeathTimer : IComponentData
-{
-    public float Value;
-    public float Value2;
-}
-
-public struct EnemyEntity : IComponentData
-{
-    public Entity Value;
 }

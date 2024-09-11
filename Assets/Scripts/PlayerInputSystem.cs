@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 
 [UpdateInGroup (typeof(InitializationSystemGroup), OrderLast = true)] //run in initialization system group, and run it last in that. happens before main logic group. Check the entity Systems tab in unity editor.
+[BurstCompile]
 public partial class PlayerInputSystem : SystemBase
 {
     private GameInput InputActions;

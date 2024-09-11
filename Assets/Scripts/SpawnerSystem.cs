@@ -1,26 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 
+[BurstCompile]
 public partial struct SpawnerSystem : ISystem //handles the logic, other spawner scripts define the data.
 {
-    public void OnCreate(ref SystemState state) { }
-    public void OnDestroy(ref SystemState state) { }
+    [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
-        //how to get a hold of entities.
-        foreach (RefRW<Spawner> spawner in SystemAPI.Query<RefRW<Spawner>>())
+        EntityCommandBuffer ECB = new EntityCommandBuffer(Allocator.TempJob);
+        float elapsedTime = (float)SystemAPI.Time.ElapsedTime;
+
+        new SpawnJob
         {
-            if (spawner.ValueRO.NextSpawnTime < SystemAPI.Time.ElapsedTime)
-            {
-                Entity newEntity = state.EntityManager.Instantiate(spawner.ValueRO.Prefab); 
-                float3 pos = new float3(spawner.ValueRO.SpawnPosition.x, spawner.ValueRO.SpawnPosition.y, 0);
-                state.EntityManager.SetComponentData(newEntity, LocalTransform.FromPosition(pos));
-                spawner.ValueRW.NextSpawnTime = (float)SystemAPI.Time.ElapsedTime + spawner.ValueRO.SpawnRate;
-            }
+            ElapsedTime = elapsedTime,
+            ecb = ECB,
+        }.Schedule();
+
+        state.Dependency.Complete();
+        ECB.Playback(state.EntityManager);
+        ECB.Dispose();
+    }
+}
+
+[BurstCompile]
+public partial struct SpawnJob : IJobEntity
+{
+    public float ElapsedTime;
+    public EntityCommandBuffer ecb;
+
+    [BurstCompile]
+    private void Execute(ref SpawnerComponent spawner)
+    {
+        if (spawner.NextSpawnTime < ElapsedTime)
+        {
+            Entity newEntity = ecb.Instantiate(spawner.Prefab);
+            float3 pos = new float3(spawner.SpawnPosition.x, spawner.SpawnPosition.y, 0);
+            ecb.SetComponent(newEntity, LocalTransform.FromPosition(pos));
+            spawner.NextSpawnTime = ElapsedTime + spawner.SpawnRate;
+            
         }
     }
 }

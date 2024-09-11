@@ -17,12 +17,13 @@ public class SpawnerAuthoring : MonoBehaviour
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
 
-            AddComponent(entity, new Spawner
+            AddComponent(entity, new SpawnerComponent
             {
                 Prefab = GetEntity(authoring.Prefab, TransformUsageFlags.Dynamic),
                 SpawnPosition = new float2(authoring.transform.position.x, authoring.transform.position.y), //if you want to you can change the spawn position 
                 NextSpawnTime = 0,
-                SpawnRate = authoring.SpawnRate
+                SpawnRate = authoring.SpawnRate,
+                SpawnerEntity = entity,
             });
         }
     }
