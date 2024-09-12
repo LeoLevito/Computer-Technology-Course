@@ -16,29 +16,19 @@ public class PlayerAuthoring : MonoBehaviour
         {
             Entity playerEntity = GetEntity(TransformUsageFlags.Dynamic);
 
-            AddComponent<PlayerTag>(playerEntity);
-            AddComponent<PlayerMoveInput>(playerEntity);
-
             AddComponent(playerEntity, new PlayerMoveSpeed
             {
                 Value = authoring.MoveSpeed,
             });
 
-            AddComponent<FireProjectileTag>(playerEntity);
-            SetComponentEnabled<FireProjectileTag>(playerEntity, false);
-
             AddComponent(playerEntity, new ProjectilePrefab
             {
                 Value = GetEntity(authoring.ProjectilePrefab, TransformUsageFlags.Dynamic),
             });
+
+            AddComponent<InputComponent>(playerEntity);
         }
     }
-}
-
-
-public struct PlayerMoveInput : IComponentData
-{
-    public float2 Value;
 }
 
 public struct PlayerMoveSpeed : IComponentData
@@ -46,30 +36,7 @@ public struct PlayerMoveSpeed : IComponentData
     public float Value;
 }
 
-public struct PlayerTag : IComponentData { }
-
 public struct ProjectilePrefab : IComponentData
 {
     public Entity Value;
 }
-
-public struct FireProjectileTag : IComponentData, IEnableableComponent { }
-
-
-
-
-
-
-//new 10 sep 2024 cornelius lecture
-public struct ProjectileLifetime : IComponentData
-{
-
-    public float Value;
-}
-
-public struct LifeTime : IComponentData
-{
-    public float Value;
-}
-
-public struct IsDestroying : IComponentData { }

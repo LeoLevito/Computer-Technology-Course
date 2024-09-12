@@ -54,11 +54,14 @@ public partial struct ProjectileSpawnJob : IJobEntity
     public EntityCommandBuffer ecb;
 
     [BurstCompile]
-    private void Execute(ref LocalTransform transform, in ProjectilePrefab projectilePrefab, FireProjectileTag fireProjectileTag)
+    private void Execute(ref LocalTransform transform, in ProjectilePrefab projectilePrefab, InputComponent input)
     {
-        var newProjectile = ecb.Instantiate(projectilePrefab.Value);
-        var projectileTransform = LocalTransform.FromPositionRotation(transform.Position, transform.Rotation);
-        ecb.SetComponent(newProjectile, projectileTransform);
+        if (input.ShootInput) //only happens once when when pressed.
+        {
+            var newProjectile = ecb.Instantiate(projectilePrefab.Value);
+            var projectileTransform = LocalTransform.FromPositionRotation(transform.Position, transform.Rotation);
+            ecb.SetComponent(newProjectile, projectileTransform);
+        }
     }
 }
 
@@ -105,8 +108,6 @@ public partial struct ProjectileCollisionJob : IJobEntity
         hits.Dispose();
     }
 }
-
-
 
 [BurstCompile]
 public partial struct ProjectileKillJob : IJobEntity

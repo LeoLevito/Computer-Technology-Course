@@ -19,7 +19,6 @@ public partial struct PlayerMoveSystem : ISystem
             DeltaTime = deltaTime
         }.Schedule(); //whenever we have an available thread where gonna run it.
     }
-
 }
 
 [BurstCompile]
@@ -28,8 +27,8 @@ public partial struct PlayerMoveJob : IJobEntity
     public float DeltaTime;
 
     [BurstCompile]
-    private void Execute(ref LocalTransform transform, in PlayerMoveInput input, PlayerMoveSpeed speed)
+    private void Execute(ref LocalTransform transform, in InputComponent input, PlayerMoveSpeed speed)
     {
-        transform.Position.xy += input.Value * speed.Value * DeltaTime;
+        transform.Position.xy += input.MoveInput * speed.Value * DeltaTime;
     }
 }

@@ -43,7 +43,6 @@ public partial struct SpawnJob : IJobEntity
             float3 pos = new float3(spawner.SpawnPosition.x, spawner.SpawnPosition.y, 0);
             ecb.SetComponent(newEntity, LocalTransform.FromPosition(pos));
             spawner.NextSpawnTime = ElapsedTime + spawner.SpawnRate;
-            
         }
     }
 }
