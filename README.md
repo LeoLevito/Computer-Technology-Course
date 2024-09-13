@@ -29,7 +29,7 @@ Relevant files:
 /Scripts/Player:
   - PlayerAuthoring - attached to the Player prefab, handles baking of IComponentData PlayerComponent & InputComponent.
   - PlayerComponent - holds data for the player's MoveSpeed and the ProjectilePrefab.
-  - PlayerSystem - creates job on OnUpdate for the player movement. That IJobEntity job is defined here as well.
+  - PlayerSystem - creates a job on OnUpdate for the player movement. That IJobEntity job is defined here as well.
   
 /Scripts/Projectile:
   - ProjectileAuthoring - attached to the Projectile prefab, handles baking of IComponentData ProjectileComponent.
