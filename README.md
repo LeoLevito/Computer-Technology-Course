@@ -2,7 +2,7 @@ Regarding being performance conscious, I tried to use jobs (IJobEntity) as much 
 
 Relevant files:
 /Input:
-	-GameInput
+- GameInput
 
 /Prefabs:
 	-Player	
