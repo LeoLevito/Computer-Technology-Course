@@ -1,6 +1,7 @@
 Regarding being performance conscious, I tried to use jobs (IJobEntity) as much as possible to utilize multithreading, along with decorating the systems and jobs with the BurstCompile decorator to utilize the burst compiler to improve performance.
 
 Relevant files:
+
 /Input:
 - GameInput
 
