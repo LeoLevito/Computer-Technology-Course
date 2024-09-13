@@ -11,8 +11,8 @@ Relevant files:
 - Spawner
 
 /Scenes
-	/SampleScene:
- 	- SubScene
+/ SampleScene:
+- SubScene
 
 /Scripts
 	/Collision:
