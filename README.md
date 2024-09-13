@@ -15,30 +15,29 @@ Relevant files:
 /SampleScene:
 - SubScene
 
-/Scripts
-	/Collision:
+/Scripts/Collision:
  - CollisionLayer, Enum that holds layers that raycasts using Unity Physics package can check for.
   
-  /Enemy:
+/Scripts/Enemy:
   - EnemyAuthoring, attached to the Enemy prefab, handles baking of IComponentData EnemyComponent.
   - EnemyComponent, holds data for the enemy's MoveSpeed, DeathTimer, TimeToKill & entity.
   - EnemySystem, creates jobs on OnUpdate for the enemy spawning, moving and killing. Those IJobEntity jobs are defined here as well.
   
-  /Input:
+/Scripts/Input:
   - InputComponent, IComponentData that holds float2 MoveInput and bool ShootInput.
   - InputSystem, updates InputComponent data based on the player's input that is being read here as well.
   
-  /Player:
+/Scripts/Player:
   - PlayerAuthoring, attached to the Player prefab, handles baking of IComponentData PlayerComponent & InputComponent.
   - PlayerComponent, holds data for the player's MoveSpeed and the ProjectilePrefab.
   - PlayerSystem, creates job on OnUpdate for the player movement. That IJobEntity job is defined here as well.
   
-  /Projetile:
+/Scripts/Projetile:
   - ProjectileAuthoring, attached to the Projectile prefab, handles baking of IComponentData ProjectileComponent.
   - ProjectileComponent, holds data for the projectiles's MoveSpeed, DeathTimer, TimeToKill & entity.
   - ProjectileSystem, creats jobs on OnUpdate for the projectile spawning, moving, colliding, and killing. Those IJobEntity jobs are defined here as well.
   
-  /Spawner:
+/Scripts/Spawner:
   - SpawnerAuthoring, attached to the Spawner prefab, handles baking of IComponentData SpawnerComponent.
   - SpawnerComponent, holds data for the spawner's EnemyPrefab, SpawnPosition, SpawnRate, NextSpawnTime & entity.
 
