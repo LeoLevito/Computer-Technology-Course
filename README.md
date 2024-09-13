@@ -5,14 +5,14 @@ Relevant files:
 - GameInput
 
 /Prefabs:
-	-Player	
- 	-Enemy
-  	-Projectile
-   	-Spawner
+- Player	
+- Enemy
+- Projectile
+- Spawner
 
 /Scenes
 	/SampleScene:
- 	-SubScene
+ 	- SubScene
 
 /Scripts
 	/Collision:
