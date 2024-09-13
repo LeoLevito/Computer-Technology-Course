@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 [BurstCompile]
 public partial struct EnemySystem : ISystem
@@ -17,6 +14,13 @@ public partial struct EnemySystem : ISystem
     {
         EntityCommandBuffer ECB = new EntityCommandBuffer(Allocator.TempJob);
         float deltaTime = SystemAPI.Time.DeltaTime;
+        float elapsedTime = (float)SystemAPI.Time.ElapsedTime;
+
+        new EnemySpawnJob
+        {
+            ElapsedTime = elapsedTime,
+            ecb = ECB,
+        }.Schedule();
 
         new EnemyMoveJob
         {
@@ -32,6 +36,25 @@ public partial struct EnemySystem : ISystem
         state.Dependency.Complete();
         ECB.Playback(state.EntityManager);
         ECB.Dispose();
+    }
+}
+
+[BurstCompile]
+public partial struct EnemySpawnJob : IJobEntity
+{
+    public float ElapsedTime;
+    public EntityCommandBuffer ecb;
+
+    [BurstCompile]
+    private void Execute(ref SpawnerComponent spawner)
+    {
+        if (spawner.NextSpawnTime < ElapsedTime)
+        {
+            Entity newEntity = ecb.Instantiate(spawner.EnemyPrefab);
+            float3 pos = new float3(spawner.SpawnPosition.x, spawner.SpawnPosition.y, 0);
+            ecb.SetComponent(newEntity, LocalTransform.FromPosition(pos));
+            spawner.NextSpawnTime = ElapsedTime + spawner.SpawnRate;
+        }
     }
 }
 
@@ -58,7 +81,7 @@ public partial struct EnemyKillJob : IJobEntity
     {
         enemy.DeathTimer += DeltaTime;
 
-        if (enemy.DeathTimer >= enemy.DeathTimer2)
+        if (enemy.DeathTimer >= enemy.TimeToKill)
         {
             ecb.DestroyEntity(enemy.enemyEntity);
         }

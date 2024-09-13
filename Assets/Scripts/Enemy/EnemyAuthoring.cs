@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class EnemyAuthoring : MonoBehaviour
 {
     public float MoveSpeed;
-    public float TTK = 3;
+    public float TimeToKill = 6;
     class EnemyAuthoringBaker : Baker<EnemyAuthoring>
     {
         public override void Bake(EnemyAuthoring authoring)
@@ -18,7 +15,7 @@ public class EnemyAuthoring : MonoBehaviour
             {
                 MoveSpeed = authoring.MoveSpeed,
                 DeathTimer = 0,
-                DeathTimer2 = authoring.TTK,
+                TimeToKill = authoring.TimeToKill,
                 enemyEntity = enemyEntity,
             });
         }

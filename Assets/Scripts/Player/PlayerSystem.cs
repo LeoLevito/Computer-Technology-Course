@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
-using UnityEngine;
 
-[UpdateBefore(typeof(TransformSystemGroup))] //run before Transform System group, check entities Systems window in unity editor.
+[UpdateBefore(typeof(TransformSystemGroup))] //run before Transform System group, see the Systems window in unity editor.
 [BurstCompile]
-public partial struct PlayerMoveSystem : ISystem
+public partial struct PlayerSystem : ISystem
 {
     [BurstCompile] //for job systems, marks code so it uses different compiler (burst complier) compared to normal one. Compiles it down to raw machine code (more performant on the cpu) instead of an intermediary version.
     public void OnUpdate(ref SystemState state)
@@ -27,8 +24,8 @@ public partial struct PlayerMoveJob : IJobEntity
     public float DeltaTime;
 
     [BurstCompile]
-    private void Execute(ref LocalTransform transform, in InputComponent input, PlayerMoveSpeed speed)
+    private void Execute(ref LocalTransform transform, in InputComponent input, PlayerComponent player)
     {
-        transform.Position.xy += input.MoveInput * speed.Value * DeltaTime;
+        transform.Position.xy += input.MoveInput * player.MoveSpeed * DeltaTime;
     }
 }

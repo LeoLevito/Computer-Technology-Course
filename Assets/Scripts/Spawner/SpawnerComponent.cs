@@ -1,15 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
-using UnityEditor.ShaderGraph.Internal;
-using UnityEngine;
 
 public struct SpawnerComponent : IComponentData
 {
-    public Entity Prefab; 
+    public Entity EnemyPrefab;
     public float2 SpawnPosition; //better vector2
-    public float NextSpawnTime;
     public float SpawnRate;
+    public float NextSpawnTime;
     public Entity SpawnerEntity;
 }

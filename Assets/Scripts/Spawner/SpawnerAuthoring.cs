@@ -1,15 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Transforms;
 using UnityEngine;
 
 public class SpawnerAuthoring : MonoBehaviour
 {
-    public GameObject Prefab;
+    public GameObject EnemyPrefab;
     public float SpawnRate;
-    public float DestroyTime;
 
     class SpawnerBaker : Baker<SpawnerAuthoring>
     {
@@ -19,10 +15,10 @@ public class SpawnerAuthoring : MonoBehaviour
 
             AddComponent(entity, new SpawnerComponent
             {
-                Prefab = GetEntity(authoring.Prefab, TransformUsageFlags.Dynamic),
+                EnemyPrefab = GetEntity(authoring.EnemyPrefab, TransformUsageFlags.Dynamic),
                 SpawnPosition = new float2(authoring.transform.position.x, authoring.transform.position.y), //if you want to you can change the spawn position 
-                NextSpawnTime = 0,
                 SpawnRate = authoring.SpawnRate,
+                NextSpawnTime = 0,
                 SpawnerEntity = entity,
             });
         }
