@@ -46,5 +46,7 @@ Note on the Spawner when it comes to waves: I have just placed 5 Spawner prefabs
 Added plugin: Unity Physics, the physics system for ECS. Used for collision detection, I wanted to learn this instead of doing distance checks for collision testing. Thankfully I found this video by Sasquatch B Studios (https://www.youtube.com/watch?v=EW4pwSOe5nA) which was helpful in setting up raycasts to perform collision checks with colliders using the Unity Physics package. The logic for this can be found in the ProjectileSystem.
 
 I'm aware that making use of bigger IComponentData structs for each entity may or may not be the best way to do things if I were working on a larger game.
+
 I'm aware that making use of bigger ISystem partial structs that create multiple jobs may or may not be the best way to do things if I were working on a larger game in order to scale further. 
+
 I just wanted to try and keep script file amount manageable as well as to try and have a consistent way of writing the scripts.
