@@ -11,8 +11,7 @@ Relevant files:
 - Projectile
 - Spawner
 
-/Scenes
-/SampleScene:
+/Scenes/SampleScene:
 - SubScene
 
 /Scripts/Collision:
@@ -25,14 +24,14 @@ Relevant files:
   
 /Scripts/Input:
   - InputComponent, IComponentData that holds float2 MoveInput and bool ShootInput.
-  - InputSystem, updates InputComponent data based on the player's input that is being read here as well.
+  - InputSystem, updates InputComponent data based on the player's input, which is being read here as well.
   
 /Scripts/Player:
   - PlayerAuthoring, attached to the Player prefab, handles baking of IComponentData PlayerComponent & InputComponent.
   - PlayerComponent, holds data for the player's MoveSpeed and the ProjectilePrefab.
   - PlayerSystem, creates job on OnUpdate for the player movement. That IJobEntity job is defined here as well.
   
-/Scripts/Projetile:
+/Scripts/Projectile:
   - ProjectileAuthoring, attached to the Projectile prefab, handles baking of IComponentData ProjectileComponent.
   - ProjectileComponent, holds data for the projectiles's MoveSpeed, DeathTimer, TimeToKill & entity.
   - ProjectileSystem, creats jobs on OnUpdate for the projectile spawning, moving, colliding, and killing. Those IJobEntity jobs are defined here as well.
@@ -49,4 +48,4 @@ I'm aware that making use of bigger IComponentData structs for each entity may o
 
 I'm aware that making use of bigger ISystem partial structs that create multiple jobs may or may not be the best way to do things if I were working on a larger game in order to scale further. 
 
-I just wanted to try and keep script file amount manageable as well as to try and have a consistent way of writing the scripts.
+I just wanted to try and keep script file amount manageable as well as trying to have a consistent way of writing the scripts.
