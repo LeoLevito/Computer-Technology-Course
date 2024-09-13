@@ -11,7 +11,7 @@ Relevant files:
 - Spawner
 
 /Scenes
-/ SampleScene:
+/SampleScene:
 - SubScene
 
 /Scripts
