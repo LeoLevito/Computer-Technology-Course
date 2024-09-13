@@ -14,7 +14,7 @@ public partial struct PlayerSystem : ISystem
         new PlayerMoveJob
         {
             DeltaTime = deltaTime
-        }.Schedule(); //whenever we have an available thread where gonna run it.
+        }.Schedule(); //whenever we have an available thread where gonna run it. Easy multi-threading!
     }
 }
 

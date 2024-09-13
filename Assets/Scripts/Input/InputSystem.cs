@@ -1,7 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-[UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)] //run in initialization system group, and run it last in that. happens before main logic group. Check the entity Systems tab in unity editor.
+[UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)] //run in initialization system group, and run it last in that. Happens before main logic group. Check the entity Systems tab in unity editor.
 public partial class InputSystem : SystemBase
 {
     private GameInput InputActions;

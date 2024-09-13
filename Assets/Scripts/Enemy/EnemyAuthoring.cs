@@ -16,7 +16,7 @@ public class EnemyAuthoring : MonoBehaviour
                 MoveSpeed = authoring.MoveSpeed,
                 DeathTimer = 0,
                 TimeToKill = authoring.TimeToKill,
-                enemyEntity = enemyEntity,
+                EnemyEntity = enemyEntity,
             });
         }
     }

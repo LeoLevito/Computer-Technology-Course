@@ -13,9 +13,9 @@ public class ProjectileAuthoring : MonoBehaviour
             Entity projectileEntity = GetEntity(TransformUsageFlags.Dynamic);
             AddComponent(projectileEntity, new ProjectileComponent
             {
+                MoveSpeed = authoring.ProjectileSpeed,
                 DeathTimer = 0,
                 TimeToKill = authoring.TimeToKill,
-                MoveSpeed = authoring.ProjectileSpeed,
                 ProjectileEntity = projectileEntity,
             });
         }

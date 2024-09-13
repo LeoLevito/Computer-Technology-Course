@@ -16,7 +16,7 @@ public class SpawnerAuthoring : MonoBehaviour
             AddComponent(entity, new SpawnerComponent
             {
                 EnemyPrefab = GetEntity(authoring.EnemyPrefab, TransformUsageFlags.Dynamic),
-                SpawnPosition = new float2(authoring.transform.position.x, authoring.transform.position.y), //if you want to you can change the spawn position 
+                SpawnPosition = new float2(authoring.transform.position.x, authoring.transform.position.y), 
                 SpawnRate = authoring.SpawnRate,
                 NextSpawnTime = 0,
                 SpawnerEntity = entity,

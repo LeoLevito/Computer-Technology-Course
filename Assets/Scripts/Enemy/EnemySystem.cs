@@ -7,8 +7,6 @@ using Unity.Transforms;
 [BurstCompile]
 public partial struct EnemySystem : ISystem
 {
-    float KillTimer;
-
     [BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
@@ -83,7 +81,7 @@ public partial struct EnemyKillJob : IJobEntity
 
         if (enemy.DeathTimer >= enemy.TimeToKill)
         {
-            ecb.DestroyEntity(enemy.enemyEntity);
+            ecb.DestroyEntity(enemy.EnemyEntity);
         }
     }
 }

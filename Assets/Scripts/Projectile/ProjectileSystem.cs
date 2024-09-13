@@ -95,7 +95,7 @@ public partial struct ProjectileCollisionJob : IJobEntity
 
         if (hits.Length > 0)
         {
-            for (int i = 0; i < hits.Length; i++) //if I want to have a EnemyHealth type of component, I would use ecb.SetComponent to update value of health on the hitEnemy.
+            for (int i = 0; i < hits.Length; i++) //if, for example, I want to have a EnemyHealth type of component, I would use ecb.SetComponent to update value of health on the hitEntity.
             {
                 Entity hitEntity = hits[i].Entity;
                 ecb.DestroyEntity(hitEntity);
