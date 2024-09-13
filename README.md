@@ -42,7 +42,8 @@ Relevant files:
 
 Note on the Spawner when it comes to waves: I have just placed 5 Spawner prefabs in the SubScene and they all spawn new enemies every 5 seconds, I'm not sure if you can consider this a proper wave-spawning system since it's very basic but it does spawn in waves kinda!
 
-Added plugin (aside from Input System, Entities Graphics and Entities): Unity Physics, the physics system for ECS/DOTS. Used for collision detection, I wanted to learn this instead of doing distance checks for collision testing. Thankfully I found this video by Sasquatch B Studios (https://www.youtube.com/watch?v=EW4pwSOe5nA) which was helpful in setting up raycasts to perform collision checks with colliders using the Unity Physics package. The logic for this can be found in the ProjectileSystem.
+Added plugin (aside from Input System, Entities Graphics and Entities): 
+- Unity Physics, the physics system for ECS/DOTS. Used for collision detection, I wanted to learn this instead of doing distance checks for collision testing. Thankfully I found this video by Sasquatch B Studios (https://www.youtube.com/watch?v=EW4pwSOe5nA) which was helpful in setting up raycasts to perform collision checks with colliders using the Unity Physics package. The logic for this can be found in the ProjectileSystem.
 
 I'm aware that making use of bigger IComponentData structs for each entity may or may not be the best way to do things if I were working on a larger game.
 
